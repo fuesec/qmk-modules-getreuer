@@ -22,9 +22,9 @@
             ]
         },
         {
-            "key": "SELECT_LINE_BACK",
+            "key": "SELECT_LINE_UP",
             "aliases": [
-                "SELLINEBAK"
+              "SELLUP"
             ]
         }
     ]
