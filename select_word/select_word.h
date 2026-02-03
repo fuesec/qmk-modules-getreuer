@@ -57,7 +57,7 @@ extern "C" {
  *
  * @param action  Type of selection to perform.
  */
-void select_word_register(char action);
+void select_word_register(select_word_action_t action);
 
 /** Unregisters (releases) selection hotkey. */
 void select_word_unregister(void);
