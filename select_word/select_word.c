@@ -228,7 +228,9 @@ void select_word_unregister(void) {
                : PSTR(SS_LSFT(SS_TAP(X_END))),
         TAP_CODE_DELAY);
     set_mods(saved_mods);
-  } else if (registered_hotkey == KC_UP) {
+  }
+#if 0
+else if (registered_hotkey == KC_UP) {
     // When using line selection to select multiple lines, tap Shift+Home (or on
     // Mac, GUI+Shift+Left) on release to ensure the selection extends to the
     // end of the current line.
@@ -241,6 +243,7 @@ void select_word_unregister(void) {
         TAP_CODE_DELAY);
     set_mods(saved_mods);
   }
+#endif
 
   registered_hotkey = KC_NO;
 #if SELECT_WORD_TIMEOUT > 0
