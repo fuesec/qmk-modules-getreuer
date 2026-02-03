@@ -193,16 +193,16 @@ void select_word_register(select_word_action_t action) {
   }
 
   switch (action) {
-    case SELECT_WORD_FORWARD:
+    case ACTION_SELECT_WORD_FORWARD:
       select_word_in_dir(1);
       break;
-    case SELECT_WORD_BACKWARD:
+    case ACTION_SELECT_WORD_BACKWARD:
       select_word_in_dir(-1);
       break;
-    case SELECT_LINE_DOWN:
+    case ACTION_SELECT_LINE_DOWN:
       select_line_in_dir(2);
       break;
-    case SELECT_LINE_UP:
+    case ACTION_SELECT_LINE_UP:
       select_line_in_dir(-2);
       break;
   }
@@ -303,7 +303,7 @@ bool process_record_select_word(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     case SELECT_WORD:
       if (record->event.pressed) {
-        select_word_register(shifted ? SELECT_LINE_DOWN : SELECT_WORD_FORWARD);
+        select_word_register(shifted ? ACTION_SELECT_LINE_DOWN : ACTION_SELECT_WORD_FORWARD);
       } else {
         select_word_unregister();
       }
@@ -311,7 +311,7 @@ bool process_record_select_word(uint16_t keycode, keyrecord_t* record) {
 
     case SELECT_WORD_BACK:
       if (record->event.pressed) {
-        select_word_register(shifted ? SELECT_LINE_UP : SELECT_WORD_BACKWARD);
+        select_word_register(shifted ? ACTION_SELECT_LINE_UP : ACTION_SELECT_WORD_BACKWARD);
       } else {
         select_word_unregister();
       }
@@ -319,7 +319,7 @@ bool process_record_select_word(uint16_t keycode, keyrecord_t* record) {
 
     case SELECT_LINE:
       if (record->event.pressed) {
-        select_word_register(SELECT_LINE_DOWN);
+        select_word_register(ACTION_SELECT_LINE_DOWN);
       } else {
         select_word_unregister();
       }
@@ -327,7 +327,7 @@ bool process_record_select_word(uint16_t keycode, keyrecord_t* record) {
 
     case SELECT_LINE_UP:
       if (record->event.pressed) {
-        select_word_register(SELECT_LINE_UP);
+        select_word_register(ACTION_SELECT_LINE_UP);
       } else {
         select_word_unregister();
       }

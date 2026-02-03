@@ -39,10 +39,10 @@ extern "C" {
 #endif
 
 typedef enum {
-    SELECT_WORD_FORWARD,
-    SELECT_WORD_BACKWARD,
-    SELECT_LINE_DOWN,
-    SELECT_LINE_UP
+    ACTION_SELECT_WORD_FORWARD,
+    ACTION_SELECT_WORD_BACKWARD,
+    ACTION_SELECT_LINE_DOWN,
+    ACTION_SELECT_LINE_UP
 } select_word_action_t;
 
 /**
