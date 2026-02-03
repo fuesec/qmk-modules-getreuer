@@ -38,6 +38,14 @@
 extern "C" {
 #endif
 
+
+typedef enum {
+    SELECT_WORD_FORWARD,
+    SELECT_WORD_BACKWARD,
+    SELECT_LINE_FORWARD,
+    SELECT_LINE_BACKWARD
+  } select_word_action_t;
+
 /**
  * @brief Registers (presses) selection `action`.
  *

@@ -29,13 +29,6 @@ ASSERT_COMMUNITY_MODULES_MIN_API_VERSION(1, 0, 0);
 #  define SELECT_WORD_TIMEOUT  5000
 #endif  // SELECT_WORD_TIMEOUT
 
-typedef enum {
-  SELECT_WORD_FORWARD,
-  SELECT_WORD_BACKWARD,
-  SELECT_LINE_FORWARD,
-  SELECT_LINE_BACKWARD
-} select_word_action_t;
-
 static int8_t selection_dir = 0;
 static bool reset_before_next_event = false;
 static uint8_t registered_hotkey = KC_NO;
