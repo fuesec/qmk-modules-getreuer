@@ -144,7 +144,7 @@ static void select_word_in_dir(int8_t dir) {
   selection_dir = dir;
 }
 
-static void select_line(int8_t dir) {
+static void select_line_in_dir(int8_t dir) {
   // With Windows and Linux (non-Mac) systems:
   // dir < 0: Backward line selection: End, Shift+Home.
   // dir > 0: Forward line selection: Home, Shift+End.
@@ -166,7 +166,7 @@ static void select_line(int8_t dir) {
       selection_dir = 0;
     }
 
-    if (selection_dir == 0) {
+    if (selection_dir == 0) { // Initial selection.
       tap_code16_delay(  // Move cursor to the start/end of the line.
           is_mac ? ((dir < 0) ? G(KC_RGHT) : G(KC_LEFT))
                  : ((dir < 0) ? KC_END : KC_HOME),
@@ -199,11 +199,11 @@ void select_word_register(select_word_action_t action) {
     case SELECT_WORD_BACKWARD:
       select_word_in_dir(-1);
       break;
-    case SELECT_LINE_FORWARD:
-      select_line(2);
+    case SELECT_LINE_DOWN:
+      select_line_in_dir(2);
       break;
-    case SELECT_LINE_BACKWARD:
-      select_line(-2);
+    case SELECT_LINE_UP:
+      select_line_in_dir(-2);
       break;
   }
 
@@ -303,7 +303,7 @@ bool process_record_select_word(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     case SELECT_WORD:
       if (record->event.pressed) {
-        select_word_register(shifted ? SELECT_LINE_FORWARD : SELECT_WORD_FORWARD);
+        select_word_register(shifted ? SELECT_LINE_DOWN : SELECT_WORD_FORWARD);
       } else {
         select_word_unregister();
       }
@@ -311,7 +311,7 @@ bool process_record_select_word(uint16_t keycode, keyrecord_t* record) {
 
     case SELECT_WORD_BACK:
       if (record->event.pressed) {
-        select_word_register(shifted ? SELECT_LINE_BACKWARD : SELECT_WORD_BACKWARD);
+        select_word_register(shifted ? SELECT_LINE_UP : SELECT_WORD_BACKWARD);
       } else {
         select_word_unregister();
       }
@@ -319,14 +319,7 @@ bool process_record_select_word(uint16_t keycode, keyrecord_t* record) {
 
     case SELECT_LINE:
       if (record->event.pressed) {
-        select_word_register(SELECT_LINE_FORWARD);
-      } else {
-        select_word_unregister();
-      }
-      return false;
-    case SELECT_LINE_BACK:
-      if (record->event.pressed) {
-        select_word_register(SELECT_LINE_BACKWARD);
+        select_word_register(SELECT_LINE_DOWN);
       } else {
         select_word_unregister();
       }
@@ -334,7 +327,7 @@ bool process_record_select_word(uint16_t keycode, keyrecord_t* record) {
 
     case SELECT_LINE_UP:
       if (record->event.pressed) {
-        select_word_register('U');
+        select_word_register(SELECT_LINE_UP);
       } else {
         select_word_unregister();
       }
